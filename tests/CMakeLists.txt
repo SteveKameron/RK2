@@ -5,7 +5,7 @@ set(TEST_SOURCES
 )
 
 add_executable(runTests ${TEST_SOURCES})
-target_link_libraries(runTests gtest gtest_main ${PROJECT_NAME})
-target_include_directories(runTests PRIVATE ${GTEST_ROOT}/include)
+target_link_libraries(runTests gtest gtest_main project_lib)
+target_include_directories(runTests PRIVATE ${GTEST_ROOT}/include ${CMAKE_CURRENT_SOURCE_DIR}/../)
 
 add_test(NAME runTests COMMAND runTests)
