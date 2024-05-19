@@ -13,7 +13,11 @@ set(PROJECT_HEADERS
     HeroBuilder.h
 )
 
-
+target_link_libraries(${PROJECT_TEST_NAME}
+    tests.cpp
+    gtest
+    gtest_main
+)
 add_library(project_lib STATIC ${PROJECT_SOURCES} ${PROJECT_HEADERS})
 
 
