@@ -11,7 +11,7 @@ add_executable(SOURCES
                Hero.cpp
                HeroBuilder.cpp)
 
-add_executable(BuilderDesignPattern ${SOURCES})
+add_executable(SOURCES ${SOURCES})
 
 enable_testing()
 
