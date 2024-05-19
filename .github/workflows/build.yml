@@ -6,37 +6,29 @@ on:
   pull_request:
     branches: [ main ]
 
-env:
-  BUILD_TYPE: Release
-
 jobs:
 
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Clear CMake cache
-      run: rm -rf ${{github.workspace}}/build
+    - uses: actions/checkout@v3
 
     - name: Get Google Test
       run: |
         git clone https://github.com/google/googletest.git ${{github.workspace}}/build/googletest-src
         cd ${{github.workspace}}/build/googletest-src
-        git checkout releas-1.12.1
+        git checkout release-1.12.1
+
+    - name: Check Google Test directory
+      run: ls -l ${{github.workspace}}/build
 
     - name: Configure CMake
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Release
 
     - name: Build
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+      run: cmake --build ${{github.workspace}}/build --config Release
 
-    - name: Run tests
-      run: cmake --build ${{github.workspace}}/build --target tests
-
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v2.2.4
-      with:
-        name: MyAwesomeProject
-        path: ${{github.workspace}}/build/
+    - name: Test
+      working-directory: ${{github.workspace}}/build
+      run: ctest -C Release
