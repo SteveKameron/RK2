@@ -5,7 +5,6 @@ project(RK2)
 set(PROJECT_SOURCES
     Hero.cpp
     HeroBuilder.cpp
-    main.cpp
 )
 
 
@@ -15,12 +14,15 @@ set(PROJECT_HEADERS
 )
 
 
-add_executable(${PROJECT_NAME} ${PROJECT_SOURCES} ${PROJECT_HEADERS})
+add_library(project_lib STATIC ${PROJECT_SOURCES} ${PROJECT_HEADERS})
 
 
-target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(project_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+add_executable(${PROJECT_NAME} main.cpp)
+target_link_libraries(${PROJECT_NAME} project_lib)
 
 
 enable_testing()
 add_subdirectory(tests)
-
