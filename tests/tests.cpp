@@ -1,50 +1,42 @@
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 #include "Hero.h"
-#include "HeroBuilder.h"
-#include <algorithm>
-#include <vector>
 
-TEST(HeroBuilderTest, CanBuildWarrior) {
-    HeroBuilder builder;
-    Hero warrior = builder.buildWarrior();
-
-    EXPECT_EQ(warrior.name, "Conan the Barbarian");
-    EXPECT_EQ(warrior.strength, 100);
-    EXPECT_EQ(warrior.dexterity, 30);
-    EXPECT_EQ(warrior.intelligence, 30);
-
-    std::vector<std::string> expectedItems = {"Sword of Power", "Shield of Resistence"};
-    for (const auto& item : expectedItems) {
-        EXPECT_TRUE(std::find_if(warrior.inventory.begin(), warrior.inventory.end(), [&](const Item& i) { return i.name == item; }) != warrior.inventory.end());
-    }
+TEST(HeroTest, Constructor) {
+    Hero hero("Warrior", 15, 10, 12);
+    EXPECT_EQ(hero.name, "Warrior");
+    EXPECT_EQ(hero.strength, 15);
+    EXPECT_EQ(hero.dexterity, 10);
+    EXPECT_EQ(hero.willpower, 12);
+    EXPECT_TRUE(hero.inventory.empty());
 }
 
-TEST(HeroBuilderTest, CanBuildWizard) {
-    HeroBuilder builder;
-    Hero wizard = builder.buildWizard();
+TEST(HeroTest, AddItem) {
+    Hero hero("Mage", 8, 14, 18);
+    Item item("Staff", 5, 10);
+    hero.addItem(item);
 
-    EXPECT_EQ(wizard.name, "Gandalf the Grey");
-    EXPECT_EQ(wizard.strength, 30);
-    EXPECT_EQ(wizard.dexterity, 30);
-    EXPECT_EQ(wizard.intelligence, 100);
-
-    std::vector<std::string> expectedItems = {"Holy Stick", "Ancient Dictionary"};
-    for (const auto& item : expectedItems) {
-        EXPECT_TRUE(std::find_if(wizard.inventory.begin(), wizard.inventory.end(), [&](const Item& i) { return i.name == item; }) != wizard.inventory.end());
-    }
+    EXPECT_EQ(hero.inventory.size(), 1);
+    EXPECT_EQ(hero.inventory.front().name, "Staff");
+    EXPECT_EQ(hero.inventory.front().weight, 5);
+    EXPECT_EQ(hero.inventory.front().cost, 10);
 }
 
-TEST(HeroBuilderTest, CanBuildRogue) {
-    HeroBuilder builder;
-    Hero rogue = builder.buildRogue();
+TEST(HeroTest, ShowItems) {
+    Hero hero("Ranger", 12, 18, 10);
+    Item item1("Bow", 3, 20);
+    Item item2("Arrow", 1, 2);
+    hero.addItem(item1);
+    hero.addItem(item2);
 
-    EXPECT_EQ(rogue.name, "Legolas");
-    EXPECT_EQ(rogue.strength, 30);
-    EXPECT_EQ(rogue.dexterity, 100);
-    EXPECT_EQ(rogue.intelligence, 30);
+    testing::internal::CaptureStdout();
+    hero.showItems();
+    std::string output = testing::internal::GetCapturedStdout();
 
-    std::vector<std::string> expectedItems = {"Poisoned Blade", "Bear Slayer"};
-    for (const auto& item : expectedItems) {
-        EXPECT_TRUE(std::find_if(rogue.inventory.begin(), rogue.inventory.end(), [&](const Item& i) { return i.name == item; }) != rogue.inventory.end());
-    }
+    EXPECT_NE(output.find("Bow"), std::string::npos);
+    EXPECT_NE(output.find("Arrow"), std::string::npos);
+}
+
+int main(int argc, char** argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }
