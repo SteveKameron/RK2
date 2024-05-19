@@ -6,14 +6,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 include_directories(${PROJECT_SOURCE_DIR})
 
-add_executable(SOURCES
-               main.cpp
-               Hero.cpp
-               HeroBuilder.cpp)
+set(SOURCES
+    main.cpp
+    Hero.cpp
+    HeroBuilder.cpp
+)
 
-add_executable(SOURCES ${SOURCES})
+add_executable(BuilderDesignPattern ${SOURCES})
 
 enable_testing()
 
 add_subdirectory(tests)
-
