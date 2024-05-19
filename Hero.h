@@ -11,9 +11,9 @@ public:
 	Hero(string name, int strength, int dexterity, int willpower) : name(name), strength(strength), dexterity(dexterity), willpower(willpower) {};
 	void showItems();
 	void addItem(Item item);
-private:
 	std::list<Item> inventory;
 	int strength;
+	int intelligence;
 	int dexterity;
 	int willpower;
 	string name;

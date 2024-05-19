@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/tests.dir/tests.cpp.o CMakeFiles/tests.dir/Hero.cpp.o CMakeFiles/tests.dir/HeroBuilder.cpp.o -o tests  lib/libgtest.a lib/libgtest_main.a lib/libgtest.a 

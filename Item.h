@@ -13,7 +13,6 @@ public:
 	void printStats() {
 		cout << "Item: " << name << " " << power << " " << cost << endl;
 	}
-private:
 	string name;
 	int power;
 	float cost;
