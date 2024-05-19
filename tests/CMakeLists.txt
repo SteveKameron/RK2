@@ -1,3 +1,10 @@
+include(FetchContent)
+
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/release-1.11.0.zip
+)
+FetchContent_MakeAvailable(googletest)
 set(GTEST_ROOT "/home/runner/work/RK2/RK2/build/googletest-release-1.11.0")
 
 set(TEST_SOURCES
