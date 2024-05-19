@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 include_directories(${PROJECT_SOURCE_DIR})
 
+
 set(SOURCES
     main.cpp
     Hero.cpp
