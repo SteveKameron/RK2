@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/runTests.dir/tests.cpp.o CMakeFiles/runTests.dir/__/Hero.cpp.o CMakeFiles/runTests.dir/__/HeroBuilder.cpp.o -o runTests  -lgtest -lgtest_main 

@@ -65,6 +65,16 @@ CMAKE_BINARY_DIR = "/home/steve/Documents/designpattern/Builder Design Pattern/b
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -84,51 +94,6 @@ rebuild_cache:
 # Special rule for the target rebuild_cache
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-.PHONY : list_install_components/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -175,82 +140,17 @@ BuilderDesignPattern/fast:
 .PHONY : BuilderDesignPattern/fast
 
 #=============================================================================
-# Target rules for targets named builder_tests
+# Target rules for targets named runTests
 
 # Build rule for target.
-builder_tests: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 builder_tests
-.PHONY : builder_tests
+runTests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 runTests
+.PHONY : runTests
 
 # fast build rule for target.
-builder_tests/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/builder_tests.dir/build.make CMakeFiles/builder_tests.dir/build
-.PHONY : builder_tests/fast
-
-#=============================================================================
-# Target rules for targets named builder_lib
-
-# Build rule for target.
-builder_lib: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 builder_lib
-.PHONY : builder_lib
-
-# fast build rule for target.
-builder_lib/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/builder_lib.dir/build.make CMakeFiles/builder_lib.dir/build
-.PHONY : builder_lib/fast
-
-#=============================================================================
-# Target rules for targets named gmock
-
-# Build rule for target.
-gmock: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock
-.PHONY : gmock
-
-# fast build rule for target.
-gmock/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build
-.PHONY : gmock/fast
-
-#=============================================================================
-# Target rules for targets named gmock_main
-
-# Build rule for target.
-gmock_main: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock_main
-.PHONY : gmock_main
-
-# fast build rule for target.
-gmock_main/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build
-.PHONY : gmock_main/fast
-
-#=============================================================================
-# Target rules for targets named gtest
-
-# Build rule for target.
-gtest: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest
-.PHONY : gtest
-
-# fast build rule for target.
-gtest/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build
-.PHONY : gtest/fast
-
-#=============================================================================
-# Target rules for targets named gtest_main
-
-# Build rule for target.
-gtest_main: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest_main
-.PHONY : gtest_main
-
-# fast build rule for target.
-gtest_main/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
-.PHONY : gtest_main/fast
+runTests/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runTests.dir/build.make tests/CMakeFiles/runTests.dir/build
+.PHONY : runTests/fast
 
 Hero.o: Hero.cpp.o
 .PHONY : Hero.o
@@ -258,7 +158,6 @@ Hero.o: Hero.cpp.o
 # target to build an object file
 Hero.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BuilderDesignPattern.dir/build.make CMakeFiles/BuilderDesignPattern.dir/Hero.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/builder_lib.dir/build.make CMakeFiles/builder_lib.dir/Hero.cpp.o
 .PHONY : Hero.cpp.o
 
 Hero.i: Hero.cpp.i
@@ -267,7 +166,6 @@ Hero.i: Hero.cpp.i
 # target to preprocess a source file
 Hero.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BuilderDesignPattern.dir/build.make CMakeFiles/BuilderDesignPattern.dir/Hero.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/builder_lib.dir/build.make CMakeFiles/builder_lib.dir/Hero.cpp.i
 .PHONY : Hero.cpp.i
 
 Hero.s: Hero.cpp.s
@@ -276,7 +174,6 @@ Hero.s: Hero.cpp.s
 # target to generate assembly for a file
 Hero.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BuilderDesignPattern.dir/build.make CMakeFiles/BuilderDesignPattern.dir/Hero.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/builder_lib.dir/build.make CMakeFiles/builder_lib.dir/Hero.cpp.s
 .PHONY : Hero.cpp.s
 
 HeroBuilder.o: HeroBuilder.cpp.o
@@ -285,7 +182,6 @@ HeroBuilder.o: HeroBuilder.cpp.o
 # target to build an object file
 HeroBuilder.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BuilderDesignPattern.dir/build.make CMakeFiles/BuilderDesignPattern.dir/HeroBuilder.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/builder_lib.dir/build.make CMakeFiles/builder_lib.dir/HeroBuilder.cpp.o
 .PHONY : HeroBuilder.cpp.o
 
 HeroBuilder.i: HeroBuilder.cpp.i
@@ -294,7 +190,6 @@ HeroBuilder.i: HeroBuilder.cpp.i
 # target to preprocess a source file
 HeroBuilder.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BuilderDesignPattern.dir/build.make CMakeFiles/BuilderDesignPattern.dir/HeroBuilder.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/builder_lib.dir/build.make CMakeFiles/builder_lib.dir/HeroBuilder.cpp.i
 .PHONY : HeroBuilder.cpp.i
 
 HeroBuilder.s: HeroBuilder.cpp.s
@@ -303,7 +198,6 @@ HeroBuilder.s: HeroBuilder.cpp.s
 # target to generate assembly for a file
 HeroBuilder.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BuilderDesignPattern.dir/build.make CMakeFiles/BuilderDesignPattern.dir/HeroBuilder.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/builder_lib.dir/build.make CMakeFiles/builder_lib.dir/HeroBuilder.cpp.s
 .PHONY : HeroBuilder.cpp.s
 
 main.o: main.cpp.o
@@ -330,30 +224,6 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BuilderDesignPattern.dir/build.make CMakeFiles/BuilderDesignPattern.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-tests.o: tests.cpp.o
-.PHONY : tests.o
-
-# target to build an object file
-tests.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/builder_tests.dir/build.make CMakeFiles/builder_tests.dir/tests.cpp.o
-.PHONY : tests.cpp.o
-
-tests.i: tests.cpp.i
-.PHONY : tests.i
-
-# target to preprocess a source file
-tests.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/builder_tests.dir/build.make CMakeFiles/builder_tests.dir/tests.cpp.i
-.PHONY : tests.cpp.i
-
-tests.s: tests.cpp.s
-.PHONY : tests.s
-
-# target to generate assembly for a file
-tests.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/builder_tests.dir/build.make CMakeFiles/builder_tests.dir/tests.cpp.s
-.PHONY : tests.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -361,18 +231,10 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... install"
-	@echo "... install/local"
-	@echo "... install/strip"
-	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... test"
 	@echo "... BuilderDesignPattern"
-	@echo "... builder_lib"
-	@echo "... builder_tests"
-	@echo "... gmock"
-	@echo "... gmock_main"
-	@echo "... gtest"
-	@echo "... gtest_main"
+	@echo "... runTests"
 	@echo "... Hero.o"
 	@echo "... Hero.i"
 	@echo "... Hero.s"
@@ -382,9 +244,6 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... tests.o"
-	@echo "... tests.i"
-	@echo "... tests.s"
 .PHONY : help
 
 

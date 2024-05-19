@@ -1,1 +1,1 @@
-/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/BuilderDesignPattern.dir/main.cpp.o CMakeFiles/BuilderDesignPattern.dir/Hero.cpp.o CMakeFiles/BuilderDesignPattern.dir/HeroBuilder.cpp.o -o BuilderDesignPattern 
+/usr/bin/c++ CMakeFiles/BuilderDesignPattern.dir/main.cpp.o CMakeFiles/BuilderDesignPattern.dir/Hero.cpp.o CMakeFiles/BuilderDesignPattern.dir/HeroBuilder.cpp.o -o BuilderDesignPattern 

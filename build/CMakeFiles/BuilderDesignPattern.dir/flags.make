@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = 
+CXX_INCLUDES = -I"/home/steve/Documents/designpattern/Builder Design Pattern"
 
-CXX_FLAGS = -O3 -DNDEBUG
+CXX_FLAGS = -std=gnu++17
 

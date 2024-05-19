@@ -1,20 +1,26 @@
-cmake_minimum_required(VERSION 3.14)
-project(BuilderDesignPattern)
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
-
-include_directories(${PROJECT_SOURCE_DIR})
+cmake_minimum_required(VERSION 3.16)
+project(RK2)
 
 
-set(SOURCES
-    main.cpp
+set(PROJECT_SOURCES
     Hero.cpp
     HeroBuilder.cpp
+    main.cpp
 )
 
-add_executable(BuilderDesignPattern ${SOURCES})
+
+set(PROJECT_HEADERS
+    Hero.h
+    HeroBuilder.h
+)
+
+
+add_executable(${PROJECT_NAME} ${PROJECT_SOURCES} ${PROJECT_HEADERS})
+
+
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
 
 enable_testing()
-
 add_subdirectory(tests)
+
