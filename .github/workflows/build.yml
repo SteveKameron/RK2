@@ -1,4 +1,4 @@
-name: Build Project
+name: CMake
 
 on:
   push:
@@ -6,26 +6,28 @@ on:
   pull_request:
     branches: [ main ]
 
+env:
+  BUILD_TYPE: Release
+
 jobs:
 
   build:
     runs-on: ubuntu-latest
-    
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
 
-    - name: Remove CMake cache
-      run: rm -rf ${{github.workspace}}/build/CMakeCache.txt
+    steps:
+    - uses: actions/checkout@v2
 
     - name: Configure CMake
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Release
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build
-      run: cmake --build ${{github.workspace}}/build --config Release
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v3
+    - name: Run tests
+      run: cmake --build ${{github.workspace}}/build --target tests
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.2.4
       with:
-        name: executable
-        path: ${{github.workspace}}/build/BuilderDesignPattern
+        name: MyAwesomeProject
+        path: ${{github.workspace}}/build/
