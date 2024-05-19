@@ -1,13 +1,12 @@
 /home/steve/Documents/designpattern/Builder Design Pattern/build/CMakeFiles/BuilderDesignPattern.dir
-/home/steve/Documents/designpattern/Builder Design Pattern/build/CMakeFiles/tests.dir
-/home/steve/Documents/designpattern/Builder Design Pattern/build/CMakeFiles/test.dir
+/home/steve/Documents/designpattern/Builder Design Pattern/build/CMakeFiles/builder_tests.dir
+/home/steve/Documents/designpattern/Builder Design Pattern/build/CMakeFiles/builder_lib.dir
 /home/steve/Documents/designpattern/Builder Design Pattern/build/CMakeFiles/edit_cache.dir
 /home/steve/Documents/designpattern/Builder Design Pattern/build/CMakeFiles/rebuild_cache.dir
 /home/steve/Documents/designpattern/Builder Design Pattern/build/CMakeFiles/list_install_components.dir
 /home/steve/Documents/designpattern/Builder Design Pattern/build/CMakeFiles/install.dir
 /home/steve/Documents/designpattern/Builder Design Pattern/build/CMakeFiles/install/local.dir
 /home/steve/Documents/designpattern/Builder Design Pattern/build/CMakeFiles/install/strip.dir
-/home/steve/Documents/designpattern/Builder Design Pattern/build/_deps/googletest-build/CMakeFiles/test.dir
 /home/steve/Documents/designpattern/Builder Design Pattern/build/_deps/googletest-build/CMakeFiles/edit_cache.dir
 /home/steve/Documents/designpattern/Builder Design Pattern/build/_deps/googletest-build/CMakeFiles/rebuild_cache.dir
 /home/steve/Documents/designpattern/Builder Design Pattern/build/_deps/googletest-build/CMakeFiles/list_install_components.dir
@@ -16,7 +15,6 @@
 /home/steve/Documents/designpattern/Builder Design Pattern/build/_deps/googletest-build/CMakeFiles/install/strip.dir
 /home/steve/Documents/designpattern/Builder Design Pattern/build/_deps/googletest-build/googlemock/CMakeFiles/gmock.dir
 /home/steve/Documents/designpattern/Builder Design Pattern/build/_deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir
-/home/steve/Documents/designpattern/Builder Design Pattern/build/_deps/googletest-build/googlemock/CMakeFiles/test.dir
 /home/steve/Documents/designpattern/Builder Design Pattern/build/_deps/googletest-build/googlemock/CMakeFiles/edit_cache.dir
 /home/steve/Documents/designpattern/Builder Design Pattern/build/_deps/googletest-build/googlemock/CMakeFiles/rebuild_cache.dir
 /home/steve/Documents/designpattern/Builder Design Pattern/build/_deps/googletest-build/googlemock/CMakeFiles/list_install_components.dir
@@ -25,7 +23,6 @@
 /home/steve/Documents/designpattern/Builder Design Pattern/build/_deps/googletest-build/googlemock/CMakeFiles/install/strip.dir
 /home/steve/Documents/designpattern/Builder Design Pattern/build/_deps/googletest-build/googletest/CMakeFiles/gtest.dir
 /home/steve/Documents/designpattern/Builder Design Pattern/build/_deps/googletest-build/googletest/CMakeFiles/gtest_main.dir
-/home/steve/Documents/designpattern/Builder Design Pattern/build/_deps/googletest-build/googletest/CMakeFiles/test.dir
 /home/steve/Documents/designpattern/Builder Design Pattern/build/_deps/googletest-build/googletest/CMakeFiles/edit_cache.dir
 /home/steve/Documents/designpattern/Builder Design Pattern/build/_deps/googletest-build/googletest/CMakeFiles/rebuild_cache.dir
 /home/steve/Documents/designpattern/Builder Design Pattern/build/_deps/googletest-build/googletest/CMakeFiles/list_install_components.dir

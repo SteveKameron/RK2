@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/builder_tests.dir/tests.cpp.o -o builder_tests  lib/libgtest_main.a libbuilder_lib.a lib/libgtest.a 

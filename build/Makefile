@@ -65,16 +65,6 @@ CMAKE_BINARY_DIR = "/home/steve/Documents/designpattern/Builder Design Pattern/b
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-.PHONY : test/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -185,17 +175,30 @@ BuilderDesignPattern/fast:
 .PHONY : BuilderDesignPattern/fast
 
 #=============================================================================
-# Target rules for targets named tests
+# Target rules for targets named builder_tests
 
 # Build rule for target.
-tests: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests
-.PHONY : tests
+builder_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 builder_tests
+.PHONY : builder_tests
 
 # fast build rule for target.
-tests/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/build
-.PHONY : tests/fast
+builder_tests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/builder_tests.dir/build.make CMakeFiles/builder_tests.dir/build
+.PHONY : builder_tests/fast
+
+#=============================================================================
+# Target rules for targets named builder_lib
+
+# Build rule for target.
+builder_lib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 builder_lib
+.PHONY : builder_lib
+
+# fast build rule for target.
+builder_lib/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/builder_lib.dir/build.make CMakeFiles/builder_lib.dir/build
+.PHONY : builder_lib/fast
 
 #=============================================================================
 # Target rules for targets named gmock
@@ -255,7 +258,7 @@ Hero.o: Hero.cpp.o
 # target to build an object file
 Hero.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BuilderDesignPattern.dir/build.make CMakeFiles/BuilderDesignPattern.dir/Hero.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/Hero.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/builder_lib.dir/build.make CMakeFiles/builder_lib.dir/Hero.cpp.o
 .PHONY : Hero.cpp.o
 
 Hero.i: Hero.cpp.i
@@ -264,7 +267,7 @@ Hero.i: Hero.cpp.i
 # target to preprocess a source file
 Hero.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BuilderDesignPattern.dir/build.make CMakeFiles/BuilderDesignPattern.dir/Hero.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/Hero.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/builder_lib.dir/build.make CMakeFiles/builder_lib.dir/Hero.cpp.i
 .PHONY : Hero.cpp.i
 
 Hero.s: Hero.cpp.s
@@ -273,7 +276,7 @@ Hero.s: Hero.cpp.s
 # target to generate assembly for a file
 Hero.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BuilderDesignPattern.dir/build.make CMakeFiles/BuilderDesignPattern.dir/Hero.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/Hero.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/builder_lib.dir/build.make CMakeFiles/builder_lib.dir/Hero.cpp.s
 .PHONY : Hero.cpp.s
 
 HeroBuilder.o: HeroBuilder.cpp.o
@@ -282,7 +285,7 @@ HeroBuilder.o: HeroBuilder.cpp.o
 # target to build an object file
 HeroBuilder.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BuilderDesignPattern.dir/build.make CMakeFiles/BuilderDesignPattern.dir/HeroBuilder.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/HeroBuilder.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/builder_lib.dir/build.make CMakeFiles/builder_lib.dir/HeroBuilder.cpp.o
 .PHONY : HeroBuilder.cpp.o
 
 HeroBuilder.i: HeroBuilder.cpp.i
@@ -291,7 +294,7 @@ HeroBuilder.i: HeroBuilder.cpp.i
 # target to preprocess a source file
 HeroBuilder.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BuilderDesignPattern.dir/build.make CMakeFiles/BuilderDesignPattern.dir/HeroBuilder.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/HeroBuilder.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/builder_lib.dir/build.make CMakeFiles/builder_lib.dir/HeroBuilder.cpp.i
 .PHONY : HeroBuilder.cpp.i
 
 HeroBuilder.s: HeroBuilder.cpp.s
@@ -300,7 +303,7 @@ HeroBuilder.s: HeroBuilder.cpp.s
 # target to generate assembly for a file
 HeroBuilder.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BuilderDesignPattern.dir/build.make CMakeFiles/BuilderDesignPattern.dir/HeroBuilder.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/HeroBuilder.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/builder_lib.dir/build.make CMakeFiles/builder_lib.dir/HeroBuilder.cpp.s
 .PHONY : HeroBuilder.cpp.s
 
 main.o: main.cpp.o
@@ -332,7 +335,7 @@ tests.o: tests.cpp.o
 
 # target to build an object file
 tests.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/builder_tests.dir/build.make CMakeFiles/builder_tests.dir/tests.cpp.o
 .PHONY : tests.cpp.o
 
 tests.i: tests.cpp.i
@@ -340,7 +343,7 @@ tests.i: tests.cpp.i
 
 # target to preprocess a source file
 tests.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/builder_tests.dir/build.make CMakeFiles/builder_tests.dir/tests.cpp.i
 .PHONY : tests.cpp.i
 
 tests.s: tests.cpp.s
@@ -348,7 +351,7 @@ tests.s: tests.cpp.s
 
 # target to generate assembly for a file
 tests.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/builder_tests.dir/build.make CMakeFiles/builder_tests.dir/tests.cpp.s
 .PHONY : tests.cpp.s
 
 # Help Target
@@ -363,13 +366,13 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... test"
 	@echo "... BuilderDesignPattern"
+	@echo "... builder_lib"
+	@echo "... builder_tests"
 	@echo "... gmock"
 	@echo "... gmock_main"
 	@echo "... gtest"
 	@echo "... gtest_main"
-	@echo "... tests"
 	@echo "... Hero.o"
 	@echo "... Hero.i"
 	@echo "... Hero.s"
