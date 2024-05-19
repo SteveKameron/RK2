@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -isystem "/home/steve/Documents/designpattern/Builder Design Pattern/build/_deps/googletest-src/googletest/include" -isystem "/home/steve/Documents/designpattern/Builder Design Pattern/build/_deps/googletest-src/googletest"
 
-CXX_FLAGS = 
+CXX_FLAGS = -O3 -DNDEBUG
 
