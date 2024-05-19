@@ -1,3 +1,4 @@
+#include "gtest/gtest.h"
 #include "Hero.h"
 #include "HeroBuilder.h"
 #include <algorithm>
