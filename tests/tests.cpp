@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "Hero.h"
+#include "Item.h"
 
 TEST(HeroTest, Constructor) {
     Hero hero("Warrior", 15, 10, 12);
@@ -12,28 +13,34 @@ TEST(HeroTest, Constructor) {
 
 TEST(HeroTest, AddItem) {
     Hero hero("Mage", 8, 14, 18);
-    Item item("Staff", 5, 10);
-    hero.addItem(item);
+    Spellbook spellbook("Tome of Fire", 20, 50.0f);
+    hero.addItem(spellbook);
 
-    EXPECT_EQ(hero.inventory.size(), 1);
-    EXPECT_EQ(hero.inventory.front().name, "Staff");
-    EXPECT_EQ(hero.inventory.front().weight, 5);
-    EXPECT_EQ(hero.inventory.front().cost, 10);
+    ASSERT_EQ(hero.inventory.size(), 1);
+    Item& addedItem = hero.inventory.front();
+    EXPECT_EQ(addedItem.name, "Tome of Fire");
+    EXPECT_EQ(addedItem.power, 20);
+    EXPECT_EQ(addedItem.cost, 50.0f);
 }
 
-TEST(HeroTest, ShowItems) {
+TEST(HeroTest, AddMultipleItems) {
     Hero hero("Ranger", 12, 18, 10);
-    Item item1("Bow", 3, 20);
-    Item item2("Arrow", 1, 2);
-    hero.addItem(item1);
-    hero.addItem(item2);
+    Bow bow("Elven Bow", 15, 75.0f);
+    Dagger dagger("Poisoned Dagger", 8, 25.0f);
+    hero.addItem(bow);
+    hero.addItem(dagger);
 
-    testing::internal::CaptureStdout();
-    hero.showItems();
-    std::string output = testing::internal::GetCapturedStdout();
+    ASSERT_EQ(hero.inventory.size(), 2);
 
-    EXPECT_NE(output.find("Bow"), std::string::npos);
-    EXPECT_NE(output.find("Arrow"), std::string::npos);
+    Item& item1 = hero.inventory.front();
+    EXPECT_EQ(item1.name, "Elven Bow");
+    EXPECT_EQ(item1.power, 15);
+    EXPECT_EQ(item1.cost, 75.0f);
+
+    Item& item2 = hero.inventory.back();
+    EXPECT_EQ(item2.name, "Poisoned Dagger");
+    EXPECT_EQ(item2.power, 8);
+    EXPECT_EQ(item2.cost, 25.0f);
 }
 
 int main(int argc, char** argv) {
