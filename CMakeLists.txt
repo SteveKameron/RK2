@@ -13,11 +13,7 @@ set(PROJECT_HEADERS
     HeroBuilder.h
 )
 
-target_link_libraries(${PROJECT_TEST_NAME}
-    tests.cpp
-    gtest
-    gtest_main
-)
+
 add_library(project_lib STATIC ${PROJECT_SOURCES} ${PROJECT_HEADERS})
 
 
@@ -30,4 +26,4 @@ target_link_libraries(${PROJECT_NAME} project_lib)
 
 enable_testing()
 add_subdirectory(tests)
-add_subdirectory(${CMAKE_BINARY_DIR}/googletest)
+
