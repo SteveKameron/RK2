@@ -20,6 +20,12 @@ jobs:
     - name: Clear CMake cache
       run: rm -rf ${{github.workspace}}/build
 
+    - name: Get Google Test
+      run: |
+        git clone https://github.com/google/googletest.git ${{github.workspace}}/build/googletest-src
+        cd ${{github.workspace}}/build/googletest-src
+        git checkout releas-1.12.1
+
     - name: Configure CMake
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
