@@ -21,7 +21,9 @@ jobs:
         git checkout release-1.12.1
 
     - name: Create Build Directory
-      run: mkdir ${{github.workspace}}/build
+      run: |
+        mkdir -p ${{github.workspace}}/build
+        rm -rf ${{github.workspace}}/build/*
 
     - name: Configure CMake
       run: cmake -S ${{github.workspace}} -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Release
