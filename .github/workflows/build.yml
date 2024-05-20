@@ -2,12 +2,9 @@ name: CMake
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
-
-env:
-  BUILD_TYPE: Release
+    branches: [ main ]
 
 jobs:
 
@@ -15,28 +12,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
-    - name: Create Build Environment
-      run: cmake -E make_directory ${{runner.workspace}}/build
+    - name: Get Google Test
+      run: |
+        git clone https://github.com/google/googletest.git ${{github.workspace}}/build/googletest-src
+        cd ${{github.workspace}}/build/googletest-src
+        git checkout release-1.12.1
+
+    - name: Check Google Test directory
+      run: ls -l ${{github.workspace}}/build
+
+    - name: Remove old CMake cache
+      run: rm -rf ${{github.workspace}}/build/CMakeCache.txt
 
     - name: Configure CMake
-      shell: bash
-      working-directory: ${{runner.workspace}}/build
-      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+      run: cmake -B ${{github.workspace}}/build -S ${{github.workspace}} -DCMAKE_BUILD_TYPE=Release
 
     - name: Build
-      working-directory: ${{runner.workspace}}/build
-      shell: bash
-      run: cmake --build . --config $BUILD_TYPE
+      run: cmake --build ${{github.workspace}}/build --config Release
 
     - name: Test
-      working-directory: ${{runner.workspace}}/build
-      shell: bash
-      run: ctest -C $BUILD_TYPE
-
-    - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: build-artifacts
-        path: ${{runner.workspace}}/build
+      working-directory: ${{github.workspace}}/build
+      run: ctest -C Release
